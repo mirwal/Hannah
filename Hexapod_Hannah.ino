@@ -1,5 +1,6 @@
-// Jetzt mit Github
+// Jetzt mit Github und getestet
 
+#include <SPI.h>
 #include <DynamixelSerial1.h>
 #include "Tasten.h"
 #include "Hannah.h"
@@ -37,6 +38,9 @@ uint32_t timer_1 = millis();
 
 
 void GrundPosition();
+void TastenInterpretieren();
+void AufgabeUmsetzen(Hannah);
+bool timo_1(uint32_t intervalWert);
 
 bool HR1_flag = false;
 bool HR2_flag = false;
@@ -193,6 +197,7 @@ void loop()
 			int potispeed = map(Tast.getTasteWert(Poti, true), 0, 128, 10, 512);
 			for (int i = 0; i < 6; i++) {
 				Dynamixel.moveSpeed(1 + i, map(IK.getCoxa(0 + i), -45, +45, 512 - CA, 512 + CA), potispeed);
+
 				Dynamixel.moveSpeed(7 + i, map(IK.getFemur(0 + i), -45, +45, 512 - CA, 512 + CA), potispeed);
 				Dynamixel.moveSpeed(13 + i, map(IK.getTibia(0 + i), -45, +45, 512 - CA, 512 + CA), potispeed);
 			}

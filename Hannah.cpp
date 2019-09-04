@@ -3,6 +3,7 @@
 
 Hannah::Hannah()
 {
+	aufgabe = Null;
 }
 
 

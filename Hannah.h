@@ -1,4 +1,6 @@
-#pragma once
+// #pragma once
+#ifndef _HANNAH_H_
+#define _HANNAH_H_
 
 #define	Null			0
 #define	Laufen			1
@@ -8,7 +10,7 @@
 #define	Schlapp			5
 #define	Frost			6
 
-class Hannah 
+class Hannah
 {
 public:
 	Hannah();
@@ -18,5 +20,5 @@ public:
 	int getAufgabe();
 private:
 	int aufgabe;
-} ;
-extern Hannah H;
+}; extern Hannah H;
+#endif	//_HANNAH_H_
