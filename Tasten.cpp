@@ -13,8 +13,6 @@
 #define peekData()      (Serial4.peek())         // Peek Serial Data
 #define beginCom(args)  (Serial4.begin(args))    // Begin Serial Comunication
 #define endCom()        (Serial4.end())          // End Serial Comunication
-#define sendDebug(args)		(Serial.print(args))
-#define sendDebugln(args)	(Serial.println(args))
 // Macro for Timing
 
 #define delayus(args) (delayMicroseconds(args))  // Delay Microseconds
@@ -107,7 +105,6 @@ bool Tasten::setTasteWert(unsigned char ID, uint8_t wert)
 	TasteWert[ID] = wert;
 	PotiWert[ID] = wert;
 	return true;
-	//sendDebug(wert);sendDebug("\t");
 }
 uint8_t Tasten::getTasteWert(unsigned char ID)
 {

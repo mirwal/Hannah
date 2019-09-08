@@ -79,7 +79,6 @@ void setup()
 
 	Serial.println("on");
 
-	//Warten bis Funke online ist :-)
 	///////////															///////////
 	///////////															///////////
 	///////////															///////////
@@ -145,6 +144,7 @@ void setup()
 	userFeedback.print_in_Zeile_3("erung aus 789");// display a line of text
 	
 	
+	//Warten bis Funke online ist :-)
 	do
 	{
 		Tast.lesen();

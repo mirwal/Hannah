@@ -36,9 +36,7 @@ void UserFeedback::print_in_Zeile_n(const String &s, uint8_t Zeilennummer)
 	{
 		setTextColor(1);
 		setCursor(i * 7 + 2, Zeilennummer * 9); print(s[i]);
-
-
-
-	}	display();
+	}	
+	display();
 }
 UserFeedback userFeedback;
