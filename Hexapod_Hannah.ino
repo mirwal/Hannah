@@ -1,4 +1,4 @@
-// Jetzt mit Github und getestet
+// Jetzt mit Github und getestet..
 
 #include <SPI.h>
 #include <DynamixelSerial1.h>
@@ -6,6 +6,7 @@
 #include "Hannah.h"
 #include "ik.h"
 #include "UserFeedback.h"
+#include "Nextion.h"
 
 
 int Temperature, Voltage, Position;
@@ -57,14 +58,15 @@ void setup()
 {
 	pinMode(LED_BUILTIN, OUTPUT);
 	digitalWrite(LED_BUILTIN, HIGH);
-	Serial.begin(9600);              // Begin Serial Comunication
-	Dynamixel.begin(1000000u, 2);  // Inicialize the servo at 1Mbps and Pin Control 2
-	userFeedback.start();
+	Serial.begin(9600);				// Begin Serial Comunication
+	Dynamixel.begin(1000000u, 2);	// Inicialize the servo at 1Mbps and Pin Control 2	###(Serial1)###
+	userFeedback.start();			// OLED Display anmelden
+	Serial5.begin(9600);			// Nextion Display komunikation eroffnen			###(Serial5)###
 	delay(1500);
-	Tast.begin(9600);
+	Tast.begin(9600);				// FunkModul komunikation eroffnen					###(Serial4)###
 	delay(500);
 
-
+	// Im Notfall zum Adressieren der einzelnen Motoren ID
 	/*	int IDS = 11;
 		for (int i = 0; i < 20; i++) {
 			Dynamixel.reset(i);
@@ -154,14 +156,16 @@ void setup()
 
 	digitalWrite(LED_BUILTIN, LOW);
 }
-int serialcounter;
+// int serialcounter;								/* <---- kann warscheinlich weg */
+// uint8_t BeinOnlineFlag = 0;						/* <---- kann warscheinlich weg */
+
 unsigned int CH[20] = { 0 };						// Array für die werte die von der Funke gekommen sind 
 
 uint8_t MSB = 0;									// HIGH Bit und LOW Bit ... zwei daten auslesen
 uint8_t LSB = 0;
 
 char inputBuffer[8];								// Char Buffer array für die Digitalen Eingange die von der Funke ausgelesen wurden kurz zwischenTempen
-uint8_t BeinOnlineFlag = 0;
+
 
 
 //###################################################################
@@ -186,7 +190,7 @@ void loop()
 		userFeedback.print_in_Zeile_4(IK.getPosY());
 		
 
-#define CA		160
+#define CA		160					// wollte mich noch nicht richtig festlegen
 
 		IK.setRotY((map(uint8_t(Tast.getTasteWert(HR_LR)), 30, 100, -20, +20)));
 		
